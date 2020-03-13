@@ -1,0 +1,62 @@
+<aura:component controller="SoqlBuilderController">
+    <aura:attribute name="sObject" type="String" />
+    <aura:attribute name="fields" type="String" />
+    <aura:attribute name="conditions" type="String" />
+    <aura:attribute name="limit" type="String" />
+    <aura:attribute name="offset" type="String" />
+    <aura:attribute name="orderBy" type="String" />
+    <aura:attribute name="tableIndex" type="Integer" default="0"/>
+
+    <aura:attribute name="columns" type="List" />
+    <aura:attribute name="records" type="List" />
+    <aura:attribute name="data" type="Object" />
+    <aura:attribute name="sortAsc" type="Boolean" default="false"/>
+
+    <aura:handler event="c:SoqlBuilderEvent" action="{!c.createSoqlQuery}" />
+
+    <lightning:textarea aura:id="soqlQuery" name="input1" label="Enter some text" readonly="true"/>
+    <lightning:button variant="brand"
+                      class="block-center"
+                      label="Create table"
+                      title="Begins the task"
+                      onclick="{!c.createTable}">
+    </lightning:button>
+
+    <div class="pagination">
+        <lightning:button aura:id="paginationPreview"
+                          variant="brand"
+                          label="Preview"
+                          title="Begins the task"
+                          onclick="{!c.paginationPreview}"/>
+        <lightning:button aura:id="paginationNext"
+                          variant="brand"
+                          label="Next"
+                          title="Begins the task"
+                          onclick="{!c.paginationNext}"/>
+    </div>
+
+
+    <div class="table">
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <aura:iteration items="{!v.columns}" var="column">
+                        <th scope="col" data-apiname="{!column}" onclick="{!c.sortTable}">{!column}</th>
+                    </aura:iteration>
+                </tr>
+            </thead>
+
+            <tbody>
+                <aura:iteration items="{!v.records}" var="record">
+                    <tr class="slds-hint-parent">
+                        <aura:iteration items="{!record}" var="innerRecord">
+                            <td>{!innerRecord}</td>
+                        </aura:iteration>
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+    </div>
+
+    <c:SoqlBuilderServer aura:id="server"/>
+</aura:component>

@@ -1,0 +1,51 @@
+<aura:component controller="SoqlBuilderController">
+    <aura:attribute name="data" type="List"/>
+    <aura:attribute name="fields" type="List"/>
+    <aura:attribute name="inequalityConditions" type="List"/>
+    <aura:attribute name="countConditions" type="List" default="[1]"/>
+    <aura:attribute name="conditions" type="Object[]"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <c:SoqlBuilderServer aura:id="server"/>
+    <lightning:select name="sObjectId" label="Select a SObject:" aura:id="sObjectId" onchange="{!c.changeSObjectFront}">
+        <aura:iteration items="{!v.data}" var="option">
+            <option text="{!option.QualifiedApiName}" value="{!option.QualifiedApiName}"/>
+        </aura:iteration>
+    </lightning:select>
+    <div aura:id="block-fields" class="fields slds-hide">
+        <h2>Please select fields</h2>
+        <ui:inputSelect multiple="true" class="fields-select" aura:id="fieldsSelect" change="{!c.changeFieldsFront}">
+            <aura:iteration items="{!v.fields}" var="option">
+                <ui:inputSelectOption text="{!option.label}"/>
+            </aura:iteration>
+        </ui:inputSelect>
+    </div>
+    <div aura:id="conditionsAndTable" class="conditionsAndTable slds-hide">
+
+        <c:SoqlBuilderCondition fields="{!v.fields}" countConditions="{!v.countConditions}"></c:SoqlBuilderCondition>
+
+        <div class="limitAndOffset">
+            <lightning:input aura:id="limit" label="limit" onchange="{!c.changeLimitFront}"/>
+            <lightning:input aura:id="offset" label="offset" onchange="{!c.changeOffsetFront}"/>
+        </div>
+
+        <div class="sortField">
+            <lightning:select aura:id="orderBy" label="" onchange="{!c.createSOQL}">
+                <aura:iteration items="{!v.fields}" var="option">
+                    <option text="{!option.label}"></option>
+                </aura:iteration>
+            </lightning:select>
+            <lightning:select aura:id="orderBy" label="" onchange="{!c.createSOQL}">
+                <option value="ASC">A TO Z</option>
+                <option value="DESC">Z TO A</option>
+            </lightning:select>
+            <lightning:select aura:id="orderBy" label="" onchange="{!c.createSOQL}">
+                <option value="NULLS FIRST">NULLS FIRST</option>
+                <option value="NULLS LAST">NULLS LAST</option>
+            </lightning:select>
+        </div>
+
+        <c:SoqlBuilderTable/>
+    </div>
+</aura:component>

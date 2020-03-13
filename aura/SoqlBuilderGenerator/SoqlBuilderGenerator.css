@@ -1,0 +1,53 @@
+.THIS {
+    font-size: 14px;
+    font-family: "IBM Plex Mono";
+}
+
+.THIS .condition-item{
+    width: 600px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.THIS .condition-item-select{
+    width: 200px;
+}
+
+.THIS.actionCondition{
+    margin: 0 auto;
+}
+
+.THIS .limitAndOffset{
+    width: 500px;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0 auto;
+}
+
+.THIS .sortField{
+    width: 500px;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0 auto;
+}
+
+.THIS.multiple{
+    width: 500px;
+    margin: 0 auto;
+    z-index: 1;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.THIS.fields{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.THIS.fields>h2{
+    text-align: center;
+}
+.THIS .fields-select{
+    width: 200px;
+}

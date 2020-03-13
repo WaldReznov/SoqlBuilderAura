@@ -1,0 +1,16 @@
+/**
+ * Created by User on 15.11.2019.
+ */
+
+.THIS.condition-item{
+    width: 600px;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0 auto;
+}
+
+.THIS.actionCondition{
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+}

@@ -1,0 +1,40 @@
+<aura:component description="SoqlBuilderCondition">
+    <aura:attribute name="conditions" type="Object[]" />
+    <aura:attribute name="countConditions" type="List" default="[1]"/>
+    <aura:attribute name="inequalityConditions" type="List" />
+    <aura:attribute name="fields" type="List" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <div class="actionCondition">
+        <lightning:button
+                variant="brand"
+                label="Add condition"
+                onclick="{!c.addConditionFront}">
+        </lightning:button>
+        <lightning:button
+                variant="brand"
+                label="Remove condition"
+                onclick="{!c.removeConditionFront}">
+        </lightning:button>
+    </div>
+
+    <h2 style="text-align:center">Please select conditions</h2>
+    <aura:iteration items="{!v.countConditions}" var="conditionItem">
+        <div aura:id="condition-item" class="condition-item">
+            <lightning:select aura:id="fields" name="fieldsConditions" label="Selects ur fields:" onchange="{!c.getValueFromCondition}">
+                <aura:iteration items="{!v.fields}" var="option">
+                    <option value="{!option.label}">{!option.label}</option>
+                </aura:iteration>
+            </lightning:select>
+
+            <lightning:select name="condit" label="Selects ur fields:" aura:id="inequalityConditions" onchange="{!c.getValueFromCondition}">
+                <aura:iteration items="{!v.inequalityConditions}" var="option">
+                    <option value="{!option.label}">{!option.label}</option>
+                </aura:iteration>
+            </lightning:select>
+
+            <lightning:input aura:id="inputCondition" name="inputCondition" label="Enter ur value" placeholder="type here..." onchange="{!c.getValueFromCondition}" />
+        </div>
+    </aura:iteration>
+</aura:component>

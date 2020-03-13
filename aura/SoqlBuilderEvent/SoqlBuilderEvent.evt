@@ -1,0 +1,8 @@
+<aura:event type="APPLICATION" description="Event template">
+    <aura:attribute name="sObject" type="String" />
+    <aura:attribute name="fields" type="String" />
+    <aura:attribute name="conditions" type="String" />
+    <aura:attribute name="limit" type="String" />
+    <aura:attribute name="offset" type="String" />
+    <aura:attribute name="orderBy" type="String" />
+</aura:event>

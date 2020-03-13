@@ -1,0 +1,23 @@
+.THIS td{
+    width: 250px;
+}
+.THIS th{
+    width: 250px;
+}
+
+.THIS.block-center{
+    display: block;
+    margin: 15px auto 0;
+}
+.THIS.pagination{
+    display: flex;
+    justify-content: center;
+}
+.THIS.pagination>button{
+    width: 80px;
+    margin: 20px;
+}
+.THIS.table {
+    width: 100%;
+    overflow-x: auto;
+}

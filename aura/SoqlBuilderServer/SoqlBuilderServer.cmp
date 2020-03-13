@@ -1,0 +1,8 @@
+<aura:component extensible="true">
+
+    <aura:method name="getDataController">
+        <aura:attribute name="action" type="Object" />
+        <aura:attribute name="callback" type="Function" />
+    </aura:method>
+
+</aura:component>
